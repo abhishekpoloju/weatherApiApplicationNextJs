@@ -27,9 +27,7 @@ const Searching = ({apiType}:InferGetServerSidePropsType<typeof getServerSidePro
   else{
   return (
     <div className='flex justify-center items-center'>
-      {
-        apiType.main.temp
-      }
+      
     </div>
   )
     }
