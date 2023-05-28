@@ -1,10 +1,10 @@
 import Link from 'next/link'
 import React, { ChangeEvent, SetStateAction, useState } from 'react'
 import Image from 'next/image'
-
-
+import { useRouter } from 'next/router'
 
 export const NavBar = () => {
+  const router=useRouter()
   const [input,setInput]=useState<string>("")
   const inputChange=(e:ChangeEvent<HTMLInputElement>)=>{
     setInput(e.target.value)
@@ -12,8 +12,11 @@ export const NavBar = () => {
   const searchBarFormSubmission=(e:ChangeEvent<HTMLFormElement>)=>{
     e.preventDefault()
     const value:string=(e.currentTarget.elements.item(0)?.getAttribute("value")!)
-    if(value){
-      
+    if(value){      
+      router.push({
+        pathname:'/searching',
+        query:{city:value}
+      })
     }
   }
   return (
