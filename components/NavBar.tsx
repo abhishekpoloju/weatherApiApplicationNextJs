@@ -12,7 +12,8 @@ export const NavBar = () => {
   const searchBarFormSubmission=(e:ChangeEvent<HTMLFormElement>)=>{
     e.preventDefault()
     const value:string=(e.currentTarget.elements.item(0)?.getAttribute("value")!)
-    if(value){      
+    if(value){   
+      value.trim()   
       router.push({
         pathname:'/searching',
         query:{city:value}

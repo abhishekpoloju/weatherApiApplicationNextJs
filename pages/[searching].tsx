@@ -15,6 +15,7 @@ export const getServerSideProps:GetServerSideProps<{apiType:apiFormat}>=async (c
 }
   
 const Searching = ({apiType}:InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  console.log(apiType)
   if(apiType.cod===404){
     return (
       <div className='flex justify-center items-center'>
@@ -27,7 +28,9 @@ const Searching = ({apiType}:InferGetServerSidePropsType<typeof getServerSidePro
   else{
   return (
     <div className='flex justify-center items-center'>
-      
+      {
+        apiType.main.temp
+      }
     </div>
   )
     }

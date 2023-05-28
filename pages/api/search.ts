@@ -7,6 +7,6 @@ export default function handler(
   res: NextApiResponse
 ) {
   
-  res.status(200)
+ 
 }
 
