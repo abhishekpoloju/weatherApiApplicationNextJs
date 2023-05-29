@@ -21,11 +21,11 @@ export const NavBar = () => {
     }
   }
   return (
-    <nav className='flex h-20 bg-slate-400 w-full px-5 items-center justify-between
+    <nav className='flex h-20 bg-slate-400 w-full px-5 items-center justify-around
     '>
       <Link href={`/`}><span className='text-white text-3xl font-extrabold'>WeatherApplication</span></Link>
       <form className='relative' onSubmit={searchBarFormSubmission}>
-      <input value={input} id='searchBar' onChange={inputChange} className='rounded-md border border-black'/>
+      <input value={input} required id='searchBar' onChange={inputChange} className='rounded-md border border-black'/>
       <button type='submit'><Image src={"icons8-search.svg"} alt='' width={20} height={20} className='absolute top-[1.5px] right-2'/></button>
       </form>
     </nav>
