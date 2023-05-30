@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
 import { apiFormat } from "./interfaces/interfaces";
 import { ApiDataShow } from "@/components/ApiDataShow";
@@ -22,10 +22,12 @@ export const getServerSideProps: GetServerSideProps<{
 const Searching = ({
   apiType,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const [toggleState,setToogleState]=useState(false)
+  
   if (apiType.cod === 200) {
     return (
       <div className="">
-        <ApiDataShow {...apiType} />
+        <ApiDataShow props={apiType} toggleState={toggleState} settoggleState={setToogleState} />
       </div>
     );
   } else {

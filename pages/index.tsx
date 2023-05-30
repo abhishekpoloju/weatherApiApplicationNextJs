@@ -1,6 +1,11 @@
-
+import Image from "next/image";
 export default function Home() {
   return (
-    <div className="h-[calc(100vh-80px)] w-full flex items-center justify-center"></div>
+    
+    <div className="w-full relative h-[100vh-80px] bg-orange-500">
+      
+      <Image src={'/WeatherApp Png.png'} alt="" width={500} height={300}/>
+    </div>
+    
   );
 }

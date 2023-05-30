@@ -2,21 +2,36 @@ import { apiFormat } from "@/pages/interfaces/interfaces";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import { WiDayCloudyWindy, WiDegrees, WiHumidity } from "react-icons/wi";
-import {FcBadDecision, FcGoodDecision} from "react-icons/fc"
-import {MdOutlineMoodBad} from "react-icons/md"
+import { FcBadDecision, FcGoodDecision } from "react-icons/fc";
+import { MdOutlineMoodBad } from "react-icons/md";
 import {
   BsFillSunriseFill,
   BsFillSunsetFill,
   BsFillCloudsFill,
 } from "react-icons/bs";
 import { GiInvisible } from "react-icons/gi";
-import {FaTemperatureLow,FaTemperatureHigh} from "react-icons/fa"
-export const ApiDataShow = (props: apiFormat) => {
-  console.log(props.weather[0].main);
+import { FaTemperatureLow, FaTemperatureHigh } from "react-icons/fa";
+export const ApiDataShow = ({
+  props,
+  settoggleState,
+  toggleState,
+}: {
+  props: apiFormat;
+  toggleState: boolean;
+  settoggleState: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   return (
     <div className="flex flex-col sm:flex-row sm: h-full font-mono">
       <div className="flex flex-col min-w-[300px] items-center sm:items-start justify-around h-[calc(100vh-80px)] px-5 border">
-        <p className="font-semibold text-3xl ml-14 mt-10 sm:ml-0 sm:mt-0">{props.name}</p>
+        <div className="flex w-full justify-between items-center">
+          <span className="font-semibold text-3xl ml-14 mt-10 sm:ml-0 sm:mt-0">
+            {props.name}
+          </span>
+          <div>
+            <button onClick={()=>{settoggleState(true)}} className={`bg-voilet-200 w-9 h-6 bg-violet-400 text-white rounded-l`}>C</button>
+            <button onClick={()=>{settoggleState(false)}} className="bg-voilet-200 w-9 h-6 bg-indigo-400 text-white rounded-r">F</button>
+          </div>
+        </div>
         <Image
           src={`https://openweathermap.org/img/wn/${props.weather[0].icon}@2x.png`}
           width={250}
@@ -24,7 +39,7 @@ export const ApiDataShow = (props: apiFormat) => {
           alt=""
         />
         <div className="flex flex-col gap-0">
-          <p className="text-xl font-medium">{props.main.temp}&#8451;</p>
+          <p className="text-xl font-medium">{toggleState?props.main.temp:(props.main.temp)*1.8+32}{toggleState?<span>&#8451;</span>:<span>&#8457;</span>}</p>
           {/* <p>{new Date().toLocaleString()}</p> */}
         </div>
         <div className="flex flex-col py-2">
@@ -33,7 +48,9 @@ export const ApiDataShow = (props: apiFormat) => {
         </div>
       </div>
       <div className="flex flex-col flex-grow gap-5 h-full sm:h-full bg-slate-100 sm:bg-slate-100 w-full items-center py-5 px-8">
-        <span className="font-semibold text-3xl mb-4 font-mono">Todays Highlights</span>
+        <span className="font-semibold text-3xl mb-4 font-mono">
+          Todays Highlights
+        </span>
         <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 w-full justify-evenly">
           <div className="flex flex-col items-center bg-white rounded-xl px-3 py-2 gap-3">
             <span className="text-xl font-semibold text-slate-500">
@@ -87,21 +104,21 @@ export const ApiDataShow = (props: apiFormat) => {
             </div>
             {props.main.humidity < 30 && (
               <div className="flex items-center gap-2">
-              <MdOutlineMoodBad/>
-              <span className="ml-2">Normal, Good</span>
-            </div>
+                <MdOutlineMoodBad />
+                <span className="ml-2">Normal, Good</span>
+              </div>
             )}
             {props.main.humidity >= 30 && props.main.humidity < 65 && (
               <div className="flex items-center gap-2">
-              <FcGoodDecision/>
-              <span className="ml-2">Normal, Good</span>
-            </div> 
+                <FcGoodDecision />
+                <span className="ml-2">Normal, Good</span>
+              </div>
             )}
             {props.main.humidity >= 65 && (
               <div className="flex items-center gap-2">
-                <FcBadDecision/>
+                <FcBadDecision />
                 <span className="ml-2">High-Humidity, Unhealthy</span>
-              </div>             
+              </div>
             )}
           </div>
           <div className="flex flex-col items-center bg-white rounded-xl px-3 py-2 gap-3">
@@ -138,27 +155,25 @@ export const ApiDataShow = (props: apiFormat) => {
             <span>{props.wind.deg} degrees</span>
           </div>
           <div className="flex flex-col items-center bg-white rounded-xl px-3 py-2 gap-3">
-            
             <span className="text-xl font-semibold text-slate-500">
               min-max temperatures
             </span>
             <div className="flex items-center gap-2">
-              <FaTemperatureHigh/>
-            <span className="text-base">
-              temp-max:{" "}
-              <span className="font-semibold">{props.main.temp_max}</span>{" "}
-              <span className="font-light text-slate-500">&#8451;</span>
-            </span>
+              <FaTemperatureHigh />
+              <span className="text-base">
+                temp-max:{" "}
+                <span className="font-semibold">{props.main.temp_max}</span>{" "}
+                <span className="font-light text-slate-500">&#8451;</span>
+              </span>
             </div>
             <div className="flex items-center gap-2">
-            <FaTemperatureLow/>
-            <span className="text-base">
-              temp-min:{" "}
-              <span className="font-semibold">{props.main.temp_min}</span>{" "}
-              <span className="font-light text-slate-500">&#8451;</span>
-            </span>
+              <FaTemperatureLow />
+              <span className="text-base">
+                temp-min:{" "}
+                <span className="font-semibold">{props.main.temp_min}</span>{" "}
+                <span className="font-light text-slate-500">&#8451;</span>
+              </span>
             </div>
-            
           </div>
         </div>
       </div>
