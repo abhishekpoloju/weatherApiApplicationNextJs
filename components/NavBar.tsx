@@ -24,7 +24,7 @@ export const NavBar = () => {
   };
   return (
     <nav
-      className="flex h-20 bg-slate-400 w-full px-5 items-center justify-around
+      className="flex flex-col sm:flex-row h-20 bg-slate-400 w-full px-5 items-center sm:justify-around
     "
     >
       <Link href={`/`}>

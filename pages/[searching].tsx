@@ -22,13 +22,7 @@ export const getServerSideProps: GetServerSideProps<{
 const Searching = ({
   apiType,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-  if (apiType === null) {
-    return (
-      <div className="flex justify-center items-center">
-        The particular location is not available in Api
-      </div>
-    );
-  } else if (apiType.cod === 200) {
+  if (apiType.cod === 200) {
     return (
       <div className="">
         <ApiDataShow {...apiType} />
