@@ -23,7 +23,7 @@ export const ApiDataShow = (props: apiFormat) => {
   const router = useRouter();
   console.log(props.weather[0].main);
   return (
-    <div className="flex flex-col sm:flex-row sm: h-full">
+    <div className="flex flex-col sm:flex-row sm: h-full font-serif">
       <div className="flex flex-col min-w-[300px] items-center sm:items-start justify-around h-[calc(100vh-80px)] px-5 border">
         <p className="font-semibold text-2xl">{props.name}</p>
         <Image
@@ -42,7 +42,7 @@ export const ApiDataShow = (props: apiFormat) => {
         </div>
       </div>
       <div className="flex flex-col flex-grow gap-5 h-full sm:h-full bg-slate-100 sm:bg-slate-100 w-full items-center py-5 px-8">
-        <span className="font-semibold text-3xl mb-4">Todays Highlights</span>
+        <span className="font-semibold text-3xl mb-4 font-mono">Todays Highlights</span>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-14 w-full justify-evenly">
           <div className="flex flex-col items-center bg-white rounded-xl px-3 py-2 gap-3">
             <span className="text-xl font-semibold text-slate-500">
