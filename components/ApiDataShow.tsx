@@ -10,22 +10,13 @@ import {
   BsFillCloudsFill,
 } from "react-icons/bs";
 import { GiInvisible } from "react-icons/gi";
+import {FaTemperatureLow,FaTemperatureHigh} from "react-icons/fa"
 export const ApiDataShow = (props: apiFormat) => {
-  const obj = {
-    Rain: "RainImage.png",
-    Snow: "SnowImage.png",
-    Clear: "ClearSkyImage.png",
-    Clouds: "CloudImage.png",
-    Drizzle: "RainImage.png",
-    Atmosphere: "SunnyImage.png",
-    Thunder: "ThunderImage.png",
-  };
-  const router = useRouter();
   console.log(props.weather[0].main);
   return (
-    <div className="flex flex-col sm:flex-row sm: h-full font-serif">
+    <div className="flex flex-col sm:flex-row sm: h-full font-mono">
       <div className="flex flex-col min-w-[300px] items-center sm:items-start justify-around h-[calc(100vh-80px)] px-5 border">
-        <p className="font-semibold text-2xl">{props.name}</p>
+        <p className="font-semibold text-3xl ml-14 mt-10 sm:ml-0 sm:mt-0">{props.name}</p>
         <Image
           src={`https://openweathermap.org/img/wn/${props.weather[0].icon}@2x.png`}
           width={250}
@@ -43,7 +34,7 @@ export const ApiDataShow = (props: apiFormat) => {
       </div>
       <div className="flex flex-col flex-grow gap-5 h-full sm:h-full bg-slate-100 sm:bg-slate-100 w-full items-center py-5 px-8">
         <span className="font-semibold text-3xl mb-4 font-mono">Todays Highlights</span>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-14 w-full justify-evenly">
+        <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-14 w-full justify-evenly">
           <div className="flex flex-col items-center bg-white rounded-xl px-3 py-2 gap-3">
             <span className="text-xl font-semibold text-slate-500">
               Wind status
@@ -147,19 +138,27 @@ export const ApiDataShow = (props: apiFormat) => {
             <span>{props.wind.deg} degrees</span>
           </div>
           <div className="flex flex-col items-center bg-white rounded-xl px-3 py-2 gap-3">
+            
             <span className="text-xl font-semibold text-slate-500">
               min-max temperatures
             </span>
+            <div className="flex items-center gap-2">
+              <FaTemperatureHigh/>
             <span className="text-base">
               temp-max:{" "}
               <span className="font-semibold">{props.main.temp_max}</span>{" "}
               <span className="font-light text-slate-500">&#8451;</span>
             </span>
+            </div>
+            <div className="flex items-center gap-2">
+            <FaTemperatureLow/>
             <span className="text-base">
               temp-min:{" "}
               <span className="font-semibold">{props.main.temp_min}</span>{" "}
               <span className="font-light text-slate-500">&#8451;</span>
             </span>
+            </div>
+            
           </div>
         </div>
       </div>
